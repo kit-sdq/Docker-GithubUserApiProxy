@@ -29,6 +29,9 @@ public class UserApiProxy {
                     .map(m -> m.get("email")).map(String.class::cast).findAny()
                     .ifPresent(email -> ((Map<String, String>) userEntity).put("email", email));
         }
+        if (userEntity.get("name") == null) {
+        	((Map<String, String>)userEntity).put("name", (String)userEntity.get("login"));
+        }
         return userEntity;
     }
 
